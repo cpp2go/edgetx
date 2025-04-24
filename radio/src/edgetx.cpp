@@ -19,7 +19,7 @@
  * GNU General Public License for more details.
  */
 
-#if !defined(SIMU)
+#if !defined(SIMU) && !defined(ESP_PLATFORM)
 #include "stm32_ws2812.h"
 #include "boards/generic_stm32/rgb_leds.h"
 #include "stm32_hal.h"

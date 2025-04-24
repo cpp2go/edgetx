@@ -37,6 +37,10 @@
 #include "special_functions.h"
 #include "view_channels.h"
 
+#if defined(PCB_OPENX1)
+#include "radio_wifi.h"
+#endif
+
 RadioMenu::RadioMenu() : TabsGroup(ICON_RADIO) { build(); }
 
 RadioMenu::~RadioMenu() { storageCheck(true); }
@@ -50,6 +54,9 @@ void RadioMenu::build()
   addTab(new GlobalFunctionsPage());
   addTab(new RadioTrainerPage());
   addTab(new RadioHardwarePage());
+#if defined(PCB_OPENX1)
+  addTab(new RadioWiFiPage());
+#endif
   addTab(new RadioVersionPage());
 }
 

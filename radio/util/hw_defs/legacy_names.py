@@ -1004,9 +1004,48 @@ LEGACY_NAMES = [
                 "label": "S2",
                 "short_label": "2",
                 "description": "Potentiometer 2",
-            },
-        },
+            }
+        }
     },
+    {
+        "targets": {"muffin"},
+        "inputs": {
+            "LH": {
+                "yaml": "Rud",
+                "lua": "rud",
+                "description": "Rudder"
+            },
+            "LV": {
+                "yaml": "Thr",
+                "lua": "thr",
+                "description": "Throttle"
+            },
+            "RV": {
+                "yaml": "Ele",
+                "lua": "ele",
+                "description": "Elevator"
+            },
+            "RH": {
+                "yaml": "Ail",
+                "lua": "ail",
+                "description": "Aileron"
+            },
+            "P1": {
+                "yaml": "POT1",
+                "lua": "s1",
+                "label": "F1",
+                "short_label": "F1",
+                "description": "Potentiometer 1"
+            },
+            "P2": {
+                "yaml": "POT2",
+                "lua": "s2",
+                "label": "F2",
+                "short_label": "F2",
+                "description": "Potentiometer 2"
+            }
+        }
+    }
 ]
 
 

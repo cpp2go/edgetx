@@ -33,7 +33,7 @@
 #include "input_mapping.h"
 #include "debug.h"
 
-#if defined(PCBTARANIS)
+#if defined(PCBTARANIS) || defined(PCB_OPENX1)
   #define N_TARANIS_FIELD(x)
   #define TARANIS_FIELD(x) x;
 #else
@@ -332,7 +332,7 @@ PACK(struct FrSkyLineData {
 });
 #endif
 
-#if defined(PCBTARANIS)
+#if defined(PCBTARANIS) || defined(PCB_OPENX1)
 PACK(struct TelemetryScriptData {
   char    file[LEN_SCRIPT_FILENAME];
   int16_t inputs[MAX_TELEM_SCRIPT_INPUTS];
@@ -343,7 +343,7 @@ PACK(struct TelemetryScriptData {
 union TelemetryScreenData_u {
   FrSkyBarData  bars[4];
   FrSkyLineData lines[4];
-#if defined(PCBTARANIS)
+#if defined(PCBTARANIS) || defined(PCB_OPENX1)
   TelemetryScriptData script;
 #endif
 };
@@ -355,7 +355,7 @@ PACK(struct TelemetryScreenData {
 union TelemetryScreenData {
   FrSkyBarData  bars[4];
   FrSkyLineData lines[4];
-#if defined(PCBTARANIS)
+#if defined(PCBTARANIS) || defined(PCB_OPENX1)
   TelemetryScriptData script;
 #endif
 } FUNC(select_tele_screen_data);
@@ -546,6 +546,12 @@ PACK(struct ModuleData {
     NOBACKUP(struct {
       uint8_t flags;
     } dsmp);
+#if defined(ESPNOW)
+    NOBACKUP(PACK(struct {
+      uint8_t ch;
+      uint8_t rx_mac_addr[ESPNOW_ETH_ALEN];
+    }) espnow);
+#endif	
   } NAME(mod) FUNC(select_mod_type);
 
   NOBACKUP(inline uint8_t getChannelsCount() const
@@ -620,7 +626,7 @@ PACK(struct CustomScreenData {
   #define TOPBAR_DATA
 #endif
 
-#if defined(PCBHORUS) || defined(PCBTARANIS) || defined(PCBNV14) || defined(PCBPL18) || defined(PCBST16)
+#if defined(PCBHORUS) || defined(PCBTARANIS) || defined(PCBNV14) || defined(PCBPL18) || defined(PCBST16) ||defined(PCB_OPENX1)
   #define SCRIPT_DATA \
     NOBACKUP(ScriptData scriptsData[MAX_SCRIPTS]);
 #else
@@ -878,6 +884,12 @@ PACK(struct TrainerData {
 #endif
 
 PACK(struct RadioData {
+
+#if defined(PCB_OPENX1)
+  char wifi_ssid[32];
+  char wifi_password[32];
+  char ftppass[20];
+#endif
 
   // Real attributes
   NOBACKUP(uint8_t manuallyEdited:1);
