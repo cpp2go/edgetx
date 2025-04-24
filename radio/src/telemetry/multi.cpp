@@ -275,7 +275,7 @@ static void processMultiSyncPacket(const uint8_t * data, uint8_t module)
 #endif
 }
 
-#if defined(PCBTARANIS) || defined(PCBHORUS)
+#if defined(PCBTARANIS) || defined(PCBHORUS) || defined(USE_MULTI_RX)
 static void processMultiRxChannels(const uint8_t * data, uint8_t len)
 {
   if (g_model.trainerData.mode != TRAINER_MODE_MULTI)
@@ -483,7 +483,7 @@ static void processMultiTelemetryPaket(const uint8_t * packet, uint8_t module)
         TRACE("[MP] Received spectrum scanner len %d != 6", len);
       break;
 
-#if defined(PCBTARANIS) || defined(PCBHORUS)
+#if defined(PCBTARANIS) || defined(PCBHORUS) || defined(USE_MULTI_RX)
     case MultiRxChannels:
       if (len >= 4)
         processMultiRxChannels(data, len);

@@ -78,6 +78,17 @@ static inline void check_struct()
   #else
     CHKTYPE(TopBarPersistentData, 1096);
   #endif
+#elif defined(PCB_OPENX1)
+  CHKSIZE(MixData, 20);
+  CHKSIZE(ExpoData, 17);
+  CHKSIZE(LimitData, 13);
+  CHKSIZE(LogicalSwitchData, 9);
+  CHKSIZE(CustomFunctionData, 11);
+  CHKSIZE(FlightModeData, 32 + 2*MAX_TRIMS);
+  CHKSIZE(TimerData, 17);
+  CHKSIZE(SwashRingData, 8);
+  CHKSIZE(ModelHeader, 131);
+  CHKSIZE(CurveHeader, 4);
 #else
   #error CHKSIZE not set up
 #endif

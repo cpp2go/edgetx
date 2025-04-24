@@ -859,6 +859,8 @@ bool isModuleUsingSport(uint8_t moduleBay, uint8_t moduleType)
     case MODULE_TYPE_R9M_LITE_PRO_PXX2:
     case MODULE_TYPE_FLYSKY_AFHDS2A:
     case MODULE_TYPE_FLYSKY_AFHDS3:
+    case MODULE_TYPE_ESPNOW:
+    case MODULE_TYPE_BT_POWERUP:	
       return false;
 
     case MODULE_TYPE_XJT_PXX1:
@@ -913,6 +915,12 @@ bool isInternalModuleSupported(int moduleType)
 #endif
 #if defined(INTERNAL_MODULE_AFHDS3)
   case MODULE_TYPE_FLYSKY_AFHDS3: return true;
+#endif
+#if defined(INTERNAL_MODULE_ESPNOW)
+  case MODULE_TYPE_ESPNOW: return true;
+#endif
+#if defined(INTERNAL_MODULE_BT_POWERUP)
+  case MODULE_TYPE_BT_POWERUP: return true;
 #endif
   }
   return false;
@@ -1063,6 +1071,16 @@ bool isExternalModuleAvailable(int moduleType)
   
 #if !defined(AFHDS3)
   if (moduleType == MODULE_TYPE_FLYSKY_AFHDS3)
+    return false;
+#endif
+
+#if !defined(ESPNOW)
+  if (moduleType == MODULE_TYPE_ESPNOW)
+    return false;
+#endif
+
+#if !defined(BT_POWERUP)
+  if (moduleType == MODULE_TYPE_BT_POWERUP)
     return false;
 #endif
 

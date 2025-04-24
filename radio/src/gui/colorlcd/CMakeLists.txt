@@ -50,6 +50,7 @@ set(GUI_SRC
   lcd.cpp
   LvglWrapper.cpp
   startup_shutdown.cpp
+  radio_wifi.cpp
 
   model/curveedit.cpp
   model/input_edit_adv.cpp

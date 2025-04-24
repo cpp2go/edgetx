@@ -1,7 +1,7 @@
 include(CMakeForceCompiler)
 include(Bitmaps)
 
-set(PCB_TYPES X9LITE X9LITES X7 XLITE XLITES X9D X9D+ X9E X10 X12S NV14 PL18 ST16)
+set(PCB_TYPES OPENX1 X9LITE X9LITES X7 XLITE XLITES X9D X9D+ X9E X10 X12S NV14 PL18 ST16)
 set(RADIO_LANGUAGES CN CZ DA DE EN ES FI FR HE HU IT JP NL PL PT RU SE SK TW UA)
 set(TTS_LANGUAGES CN CZ DA DE EN ES FR HE HU IT JP NL PL PT RU SE SK UA)
 
@@ -95,6 +95,8 @@ elseif(PCB STREQUAL STM32H7S78_DK)
   include(targets/stm32h7s78-dk/CMakeLists.txt)
 elseif(PCB STREQUAL X9E OR PCB STREQUAL X9D+ OR PCB STREQUAL X9D OR PCB STREQUAL X7 OR PCB STREQUAL X9LITE OR PCB STREQUAL X9LITES OR PCB STREQUAL XLITE OR PCB STREQUAL XLITES)
   include(targets/taranis/CMakeLists.txt)
+elseif(PCB STREQUAL OPENX1)
+  include(targets/openx1/CMakeLists.txt)
 else()
   message(FATAL_ERROR "Unknown PCB '${PCB}'")
 endif()
@@ -503,6 +505,12 @@ if(NATIVE_BUILD)
   return()
 endif()
 
+if(ESP_PLATFORM)
+    add_library(radiolib_esp32 STATIC ${SRC})
+    add_dependencies(radiolib_esp32 ${RADIO_DEPENDENCIES})
+    set_target_properties(radiolib_esp32 PROPERTIES EXCLUDE_FROM_ALL TRUE)
+else() #ESP_PLATFORM
+
 # Silence CMake 2.8+ warning about unused variable (ie. if specified when not relevant)
 set(ignore_USE_UNSUPPORTED_TOOLCHAIN "${USE_UNSUPPORTED_TOOLCHAIN}")
 
@@ -546,9 +554,11 @@ else()
   add_definitions(-DUSE_CUSTOM_ALLOCATOR)
   set(SRC ${SRC} lua/custom_allocator.cpp)
 endif()
+endif() #ESP_PLATFORM
 
 # Bootloader
 if(BOOTLOADER)
+  add_definitions(-DBOOTLOADER)
   add_subdirectory(targets/common/arm/stm32/bootloader)
   include_directories(${CMAKE_CURRENT_BINARY_DIR}/targets/common/arm/stm32/bootloader)
   set(RADIO_DEPENDENCIES ${RADIO_DEPENDENCIES} bootloader)
@@ -561,7 +571,7 @@ link_libraries(firmware -lstdc++)
 add_dependencies(firmware ${RADIO_DEPENDENCIES})
 set_target_properties(firmware PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
-if(DEBUG)
+if(DEBUG AND NOT ESP_PLATFORM)
   target_compile_definitions(board PRIVATE -DDEBUG)
   target_compile_definitions(firmware PRIVATE -DDEBUG)
   target_compile_definitions(stm32_drivers_w_dbg_fw PRIVATE -DDEBUG)
