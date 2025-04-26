@@ -22,7 +22,6 @@
 #include "i2c_driver.h"
 #include "mcp23xxx.h"
 
-#include "mcp_pins.h"
 #include "mcp23017_keys.inc"
 
 extern i2c_master_bus_handle_t gpioext_i2c_bus_handle;

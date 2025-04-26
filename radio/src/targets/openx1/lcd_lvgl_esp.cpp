@@ -158,3 +158,8 @@ void DMACopyAlphaMask(uint16_t *dest, uint16_t destw, uint16_t desth,
         }
     }
 }
+
+void lcdSetInitalFrameBuffer(void* fbAddress)
+{
+
+}

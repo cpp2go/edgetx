@@ -26,7 +26,12 @@
 #include <stddef.h>
 
 #if defined(ESP_PLATFORM)
+#define __CCMRAM
+#define __DMA
 #define __DMA_NO_CACHE
+#define __IRAM
+#define __SDRAM
+#define __SDRAMFONTS
 #else
 #include "memory_sections.h"
 #endif

@@ -743,7 +743,7 @@ enum Functions {
   FUNC_SET_SCREEN,
   FUNC_DISABLE_AUDIO_AMP,
   FUNC_RGB_LED,
-#if defined(VIDEO_SWITCH) || defined(CFN_ONLY)
+#if defined(VIDEO_SWITCH) || defined(CFN_ONLY) || defined(ESP_PLATFORM)
   FUNC_LCD_TO_VIDEO,
 #endif
 #if defined(FUNCTION_SWITCHES) || defined(CFN_ONLY)

@@ -178,6 +178,8 @@ void lcdInit();
 void lcdInitFinish();
 void lcdOff();
 
+void lcdSetInitalFrameBuffer(void* fbAddress);
+
 #define lcdRefreshWait()
 
 // Top LCD driver

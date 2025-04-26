@@ -379,7 +379,7 @@ static const _BuiltinIcon _builtinIcons[EDGETX_ICONS_COUNT] = {
     BI(ICON_RADIO_GLOBAL_FUNCTIONS, mask_radio_global_functions),
     BI(ICON_RADIO_TRAINER, mask_radio_trainer),
     BI(ICON_RADIO_HARDWARE, mask_radio_hardware),
-	BI{ICON_RADIO_WIFI, mask_radio_wifi},
+    BI(ICON_RADIO_WIFI, mask_radio_wifi),
     BI(ICON_RADIO_CALIBRATION, mask_radio_calibration),
     BI(ICON_RADIO_EDIT_THEME, mask_radio_edit_theme),
     BI(ICON_RADIO_VERSION, mask_radio_version),

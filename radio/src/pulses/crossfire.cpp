@@ -435,7 +435,9 @@ static void crossfireDeInit(void* ctx)
 #if defined(TELEMETRY_USE_CUSTOM_EXTI)
       stm32_exti_custom_disable(TELEMETRY_RX_FRAME_EXTI_LINE);
 #else
+#if !defined(ESP_PLATFORM)
      stm32_exti_disable(TELEMETRY_RX_FRAME_EXTI_LINE);
+#endif
 #endif
     }
   }

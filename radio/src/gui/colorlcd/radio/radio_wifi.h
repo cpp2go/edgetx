@@ -23,7 +23,7 @@
 #define _RADIO_WIFI_H_
 
 #include "tabsgroup.h"
-#include "textedits.h"
+#include "textedit.h"
 
 class RadioWiFiPage: public PageTab {
   protected:
@@ -33,7 +33,7 @@ class RadioWiFiPage: public PageTab {
 
     void checkEvents() override;
 
-    void build(FormWindow * window) override;
+    void build(Window * window) override;
 };
 
 #endif //_RADIO_WIFI_H_

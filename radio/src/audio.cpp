@@ -402,7 +402,7 @@ void audioTask(void * pdata)
 #endif
 
 #if !defined(__USAT)
-  #define _sat_u16(x) ((uint16_t)limit<uint32_t>(UINT16_MIN, (x), UINT16_MAX))
+  #define _sat_u16(x) ((uint16_t)limit<uint32_t>(0, (x), UINT16_MAX))
 #else
   #define _sat_u16(x) __USAT((x), 16)
 #endif

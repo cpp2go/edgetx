@@ -96,7 +96,7 @@ void RadioWiFiPage::checkEvents()
   status->update();
 }
 
-void RadioWiFiPage::build(FormWindow * window)
+void RadioWiFiPage::build(Window * window)
 {
   window->setFlexLayout();
   FlexGridLayout grid(col_dsc, row_dsc, 2);
