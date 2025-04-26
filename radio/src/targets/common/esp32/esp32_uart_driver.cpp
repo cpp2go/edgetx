@@ -19,7 +19,7 @@
  * GNU General Public License for more details.
  */
 
-#include "opentx.h"
+#include "edgetx.h"
 #include "esp32_uart_driver.h"
 
 #include "esp_log.h"

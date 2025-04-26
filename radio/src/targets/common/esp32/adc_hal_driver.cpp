@@ -27,7 +27,7 @@
 #include "freertos/semphr.h"
 #include "freertos/task.h"
 #include "hal/adc_driver.h"
-#include "opentx.h"
+#include "edgetx.h"
 #include "sdkconfig.h"
 
 #define AVERAGE_POINTS 80

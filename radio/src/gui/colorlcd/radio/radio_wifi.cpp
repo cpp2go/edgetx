@@ -23,7 +23,7 @@
 #include "radio_calibration.h"
 #include "radio_diagkeys.h"
 #include "radio_diaganas.h"
-#include "opentx.h"
+#include "edgetx.h"
 #include "libopenui.h"
 #include "hal/adc_driver.h"
 #include "hw_intmodule.h"
