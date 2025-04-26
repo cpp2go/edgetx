@@ -25,7 +25,8 @@
 #define LV_VER_RES_MAX 272
 #endif
 
-#include "lv_conf.h"
+#define LV_SKIP_DEFINES 1
+#include "gui/colorlcd/lv_conf.h"
 
 #endif /*LV_CONF_EDGETX_H*/
 

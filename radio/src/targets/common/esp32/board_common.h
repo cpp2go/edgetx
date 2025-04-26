@@ -10,7 +10,7 @@
 
 #include <inttypes.h>
 #include "definitions.h"
-#include "opentx_constants.h"
+#include "edgetx_constants.h"
 #include "hal.h"
 #include "hal/serial_port.h"
 #include "hal/watchdog_driver.h"

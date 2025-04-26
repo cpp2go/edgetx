@@ -18,9 +18,8 @@
  * GNU General Public License for more details.
  */
 
-#include "opentx.h"
+#include "edgetx.h"
 #include "esp32_rmt_rx.h"
-#include "opentx.h"
 #include "esp32_uart_driver.h"
 #include "driver/rmt_encoder.h"
 

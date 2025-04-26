@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  */ 
  
-#include "opentx.h"
+#include "edgetx.h"
 #include "pulses_esp32.h"
 #include "esp_random.h"
 

@@ -50,7 +50,6 @@ set(GUI_SRC
   lcd.cpp
   LvglWrapper.cpp
   startup_shutdown.cpp
-  radio_wifi.cpp
 
   model/curveedit.cpp
   model/input_edit_adv.cpp
@@ -98,6 +97,7 @@ set(GUI_SRC
   radio/radio_tools.cpp
   radio/radio_trainer.cpp
   radio/radio_version.cpp
+  radio/radio_wifi.cpp
   )
 
 macro(add_gui_src src)

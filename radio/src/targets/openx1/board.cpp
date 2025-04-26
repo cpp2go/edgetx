@@ -18,7 +18,7 @@
  * GNU General Public License for more details.
  */
 
-#include "opentx.h"
+#include "edgetx.h"
 
 /* Littlevgl specific */
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE

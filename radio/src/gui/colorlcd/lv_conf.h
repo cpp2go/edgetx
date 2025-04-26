@@ -180,7 +180,7 @@
  *-----------*/
 
 /*Use STM32's DMA2D (aka Chrom Art) GPU*/
-#if defined(SIMU)
+#if defined(SIMU) || defined(ESP_PLATFORM)
   #define LV_USE_GPU_STM32_DMA2D 0
 #else //SIMU
   #define LV_USE_GPU_STM32_DMA2D 1
@@ -189,13 +189,13 @@
 #if LV_USE_GPU_STM32_DMA2D
     /*Must be defined to include path of CMSIS header of target processor
     e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
-#if defined(STM32H7)
-    #define LV_GPU_DMA2D_CMSIS_INCLUDE "stm32h7xx.h"
-#elif defined(STM32H7RS)
-    #define LV_GPU_DMA2D_CMSIS_INCLUDE "stm32h7rsxx.h"
-#else
-    #define LV_GPU_DMA2D_CMSIS_INCLUDE "stm32f4xx.h"
-#endif
+	#if defined(STM32H7)
+	    #define LV_GPU_DMA2D_CMSIS_INCLUDE "stm32h7xx.h"
+	#elif defined(STM32H7RS)
+	    #define LV_GPU_DMA2D_CMSIS_INCLUDE "stm32h7rsxx.h"
+	#else
+	    #define LV_GPU_DMA2D_CMSIS_INCLUDE "stm32f4xx.h"
+	#endif
 //    #if !defined(DMA2D_NLR_PL_Pos)
 //      #define DMA2D_NLR_PL_Pos 16
 //    #endif
@@ -358,11 +358,21 @@
 /*Compiler prefix for a big array declaration in RAM*/
 #define LV_ATTRIBUTE_LARGE_RAM_ARRAY
 
+#if defined(ESP_PLATFORM)
+
+/*Place performance critical functions into a faster memory (e.g RAM)*/
+#define LV_ATTRIBUTE_FAST_MEM
+
+/*Prefix variables that are used in GPU accelerated operations, often these need to be placed in RAM sections that are DMA accessible*/
+#define LV_ATTRIBUTE_DMA 
+#else
 /*Place performance critical functions into a faster memory (e.g RAM)*/
 #define LV_ATTRIBUTE_FAST_MEM __IRAM
 
 /*Prefix variables that are used in GPU accelerated operations, often these need to be placed in RAM sections that are DMA accessible*/
 #define LV_ATTRIBUTE_DMA __DMA
+#endif
+
 
 /*Export integer constant to binding. This macro is used with constants in the form of LV_<CONST> that
  *should also appear on LVGL binding API such as Micropython.*/
@@ -714,7 +724,7 @@
 #endif
 
 /*API for FATFS (needs to be added separately). Uses f_open, f_read, etc*/
-#if defined(BOOT)
+#if defined(BOOT) || defined(ESP_PLATFORM)
 #define LV_USE_FS_FATFS  0
 #if LV_USE_FS_FATFS
     #define LV_FS_FATFS_LETTER '\0'     /*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/

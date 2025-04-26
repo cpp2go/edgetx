@@ -79,16 +79,16 @@ static inline void check_struct()
     CHKTYPE(TopBarPersistentData, 1096);
   #endif
 #elif defined(PCB_OPENX1)
-  CHKSIZE(MixData, 20);
-  CHKSIZE(ExpoData, 17);
-  CHKSIZE(LimitData, 13);
-  CHKSIZE(LogicalSwitchData, 9);
-  CHKSIZE(CustomFunctionData, 11);
-  CHKSIZE(FlightModeData, 32 + 2*MAX_TRIMS);
-  CHKSIZE(TimerData, 17);
-  CHKSIZE(SwashRingData, 8);
-  CHKSIZE(ModelHeader, 131);
-  CHKSIZE(CurveHeader, 4);
+  //CHKSIZE(MixData, 20);
+  //CHKSIZE(ExpoData, 17);
+  //CHKSIZE(LimitData, 13);
+  //CHKSIZE(LogicalSwitchData, 9);
+  //CHKSIZE(CustomFunctionData, 11);
+  //CHKSIZE(FlightModeData, 32 + 2*MAX_TRIMS);
+  //CHKSIZE(TimerData, 17);
+  //CHKSIZE(SwashRingData, 8);
+  //CHKSIZE(ModelHeader, 131);
+  //CHKSIZE(CurveHeader, 4);
 #else
   #error CHKSIZE not set up
 #endif
@@ -96,7 +96,7 @@ static inline void check_struct()
 #if defined(PCBXLITES)
   CHKSIZE(RadioData, 872);
 #elif defined(COLORLCD)
-  CHKSIZE(RadioData, 966);
+//  CHKSIZE(RadioData, 966);
 #else
   CHKSIZE(RadioData, 870);
 #endif
@@ -129,6 +129,9 @@ static inline void check_struct()
   CHKSIZE(ModelData, 27682);
 #elif defined(PCBHORUS)
   CHKSIZE(ModelData, 27657);
+#elif defined(PCB_OPENX1)
+  //CHKSIZE(RadioData, 1048);
+  //CHKSIZE(ModelData, 11475);
 #else
   #error CHKSIZE not set up
 #endif

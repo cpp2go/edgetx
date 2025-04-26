@@ -128,5 +128,9 @@
 #define SWITCHES_GPIO_REG_D          2
 #define SWITCHES_GPIO_PIN_D          5
 
+#define PORTRAIT_LCD false
+#define LANDSCAPE_LCD_SML false
+#define LANDSCAPE_LCD_STD true
+#define LANDSCAPE_LCD_LRG false
 
 #endif // _HAL_H_

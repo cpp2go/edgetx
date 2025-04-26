@@ -25,7 +25,11 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#if defined(ESP_PLATFORM)
+#define __DMA_NO_CACHE
+#else
 #include "memory_sections.h"
+#endif
 
 #if !defined(M_PI)
 #define M_PI         3.14159265358979323846   // pi
