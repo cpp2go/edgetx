@@ -1605,8 +1605,11 @@ void edgeTxInit()
 extern "C" void initialise_monitor_handles();
 #endif
 
+
 #if defined(SIMU)
 void simuMain()
+#elif defined(ESP_PLATFORM)
+extern "C" void app_main()
 #else
 int main()
 #endif
@@ -1907,6 +1910,8 @@ uint32_t availableMemory()
 {
 #if defined(SIMU)
   return 1000;
+#elif defined(ESP_PLATFORM)
+  return esp_get_free_heap_size();
 #else
   extern unsigned char *heap;
   extern int _heap_end;

@@ -390,10 +390,12 @@ void RadioSdManagerPage::fileAction(const char* path, const char* name,
                       [=]() { FirmwareUpdate(fullpath); });
       }
 #else
+#if !defined(ESP_PLATFORM)
       if (isBootloader(fullpath)) {
         menu->addLine(STR_FLASH_BOOTLOADER,
                       [=]() { BootloaderUpdate(fullpath); });
       }
+#endif      
 #endif
 #if defined(HARDWARE_INTERNAL_MODULE) || defined(HARDWARE_EXTERNAL_MODULE)
     } else if (!strcasecmp(ext, SPORT_FIRMWARE_EXT)) {
@@ -556,10 +558,12 @@ void RadioSdManagerPage::FirmwareUpdate(const char* fn)
 #else
 void RadioSdManagerPage::BootloaderUpdate(const char* fn)
 {
+#if !defined(ESP_PLATFORM)
   BootloaderFirmwareUpdate bootloaderFirmwareUpdate;
   auto dialog =
       new FlashDialog<BootloaderFirmwareUpdate>(bootloaderFirmwareUpdate);
   dialog->flash(fn);
+#endif  
 }
 #endif
 
