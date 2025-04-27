@@ -35,7 +35,6 @@
 //#include "nimble/nimble_port_freertos.h"
 
 #include "driver/i2c_master.h"
-#include "flyskyHallStick_driver.h"
 #include "nimble/nimble_port.h"
 #include "nimble/nimble_port_freertos.h"
 

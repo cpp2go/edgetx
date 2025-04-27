@@ -196,9 +196,9 @@ void toplcdRefresh();
 #define BATTERY_DIVIDER 320384
 #define VOLTAGE_DROP 0
 
+#define SLAVE_MODE()                    (g_model.trainerData.mode == TRAINER_MODE_SLAVE)
 
 // WiFi
-
 #ifndef ESPNOW_ETH_ALEN
 #define ESPNOW_ETH_ALEN 6
 #endif

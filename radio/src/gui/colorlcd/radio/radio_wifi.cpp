@@ -49,8 +49,7 @@ static void onSSIDChanged()
 
 struct SSIDEdit : public RadioTextEdit {
   SSIDEdit(Window *parent, const rect_t &rect) :
-      RadioTextEdit(parent, rect, g_eeGeneral.wifi_ssid,
-                    sizeof(g_eeGeneral.wifi_ssid), 0)
+      RadioTextEdit(parent, rect, g_eeGeneral.wifi_ssid, sizeof(g_eeGeneral.wifi_ssid))
   {
     setChangeHandler(onSSIDChanged);
   }
@@ -63,8 +62,7 @@ static void onPasswordChanged()
 
 struct PasswordEdit : public RadioTextEdit {
   PasswordEdit(Window *parent, const rect_t &rect) :
-      RadioTextEdit(parent, rect, g_eeGeneral.wifi_password,
-                    sizeof(g_eeGeneral.wifi_password), 0)
+      RadioTextEdit(parent, rect, g_eeGeneral.wifi_password, sizeof(g_eeGeneral.wifi_password))
   {
     setChangeHandler(onPasswordChanged);
   }
@@ -99,7 +97,7 @@ void RadioWiFiPage::checkEvents()
 void RadioWiFiPage::build(Window * window)
 {
   window->setFlexLayout();
-  FlexGridLayout grid(col_dsc, row_dsc, 2);
+  FlexGridLayout grid(col_dsc, row_dsc, PAD_TINY);
   lv_obj_set_style_pad_all(window->getLvObj(), lv_dpx(8), 0);
 
   strcpy(wifi_status, getWiFiStatus());
@@ -107,22 +105,21 @@ void RadioWiFiPage::build(Window * window)
   // TODO: sub-title?
 
   // Batt meter range - Range 3.0v to 16v
-  auto line = window->newLine(&grid);
-  new StaticText(line, rect_t{}, "SSID", 0, COLOR_THEME_PRIMARY1);
+  auto line = window->newLine(grid);
+  new StaticText(line, rect_t{}, "SSID", COLOR_THEME_PRIMARY1_INDEX, COLOR_THEME_PRIMARY1);
   new SSIDEdit(line, rect_t{});
 
-  line = window->newLine(&grid);
-  new StaticText(line, rect_t{}, "Password", 0, COLOR_THEME_PRIMARY1);
+  line = window->newLine(grid);
+  new StaticText(line, rect_t{}, "Password", COLOR_THEME_PRIMARY1_INDEX, COLOR_THEME_PRIMARY1);
   new PasswordEdit(line, rect_t{});
 
-  line = window->newLine(&grid);
-  new StaticText(line, rect_t{}, "WiFi Status", 0, COLOR_THEME_PRIMARY1);
-  status = new RadioTextEdit(line, rect_t{}, wifi_status,
-                    sizeof(wifi_status), 0);
+  line = window->newLine(grid);
+  new StaticText(line, rect_t{}, "WiFi Status", COLOR_THEME_PRIMARY1_INDEX, COLOR_THEME_PRIMARY1);
+  status = new RadioTextEdit(line, rect_t{}, wifi_status, sizeof(wifi_status));
 
-  line = window->newLine(&grid);
-  new StaticText(line, rect_t{}, "WiFi ON", 0, COLOR_THEME_PRIMARY1);
-  auto box = new FormWindow(line, rect_t{});
+  line = window->newLine(grid);
+  new StaticText(line, rect_t{}, "WiFi ON", COLOR_THEME_PRIMARY1_INDEX, COLOR_THEME_PRIMARY1);
+  auto box = new Window(line, rect_t{});
   box->setFlexLayout(LV_FLEX_FLOW_ROW, lv_dpx(8));
   lv_obj_set_style_grid_cell_x_align(box->getLvObj(), LV_GRID_ALIGN_STRETCH, 0);
   lv_obj_set_style_flex_cross_place(box->getLvObj(), LV_FLEX_ALIGN_CENTER, 0);
